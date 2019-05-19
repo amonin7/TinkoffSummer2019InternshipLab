@@ -13,6 +13,7 @@
 		2E0C59392291E7BD00FACAB1 /* Tinkoff________.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E0C59372291E7BD00FACAB1 /* Tinkoff________.xcdatamodeld */; };
 		2E0C593B2291E7BF00FACAB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E0C593A2291E7BF00FACAB1 /* Assets.xcassets */; };
 		2E0C593E2291E7BF00FACAB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0C593C2291E7BF00FACAB1 /* LaunchScreen.storyboard */; };
+		2E74B78B22921C5100482845 /* urlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E74B78A22921C5100482845 /* urlSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2E0C593A2291E7BF00FACAB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E0C593D2291E7BF00FACAB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E0C593F2291E7BF00FACAB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E74B78A22921C5100482845 /* urlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urlSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				2E0C59302291E7BD00FACAB1 /* AppDelegate.swift */,
 				2E0C59322291E7BD00FACAB1 /* ViewController.swift */,
+				2E74B78A22921C5100482845 /* urlSession.swift */,
 				2E0C59342291E7BD00FACAB1 /* Main.storyboard */,
 				2E0C593A2291E7BF00FACAB1 /* Assets.xcassets */,
 				2E0C593C2291E7BF00FACAB1 /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				2E0C59332291E7BD00FACAB1 /* ViewController.swift in Sources */,
 				2E0C59312291E7BD00FACAB1 /* AppDelegate.swift in Sources */,
+				2E74B78B22921C5100482845 /* urlSession.swift in Sources */,
 				2E0C59392291E7BD00FACAB1 /* Tinkoff________.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
