@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-
-func sess() {
+func sess() -> [String] {
     let urlString = "https://cfg.tinkoff.ru/news/public/api/platform/v1/getArticles"
-    guard let url = URL(string: urlString) else { return }
+    var resultTitles: [String] = []
+    guard let url = URL(string: urlString) else { return [String]() }
     let request = URLRequest(url: url)
     let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?,
         error: Error?) in
@@ -28,13 +28,12 @@ func sess() {
                     return
                 }
                 guard let responce = json["response"] as? [String: Any],
-                    let news = responce["news"] as? [[String: Any]]
-                    /*let title = news["title"] as? String */ else {
+                    let news = responce["news"] as? [[String: Any]] else {
                         return
                 }
                 for new in news {
                     let title = new["title"]
-                    print(title)
+                    resultTitles.append(title as! String)
                 }
             } catch {
                 // Если вдруг не вышло получить JSON из полученной даты
@@ -44,4 +43,5 @@ func sess() {
         }
     }
     task.resume()
+    return resultTitles
 }
