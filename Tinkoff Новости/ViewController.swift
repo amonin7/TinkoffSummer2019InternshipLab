@@ -24,7 +24,10 @@ class ViewController: UIViewController {
     
     func setupTV() {
         navigationItem.title = "Tinkoff Новости"
+        
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.barTintColor = .yellow
+        mainTableView.backgroundColor = .black
     }
 }
 
@@ -38,10 +41,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.titleLabel.text = newss[indexPath.row]
         cell.cntLabel.text = "0"
-        cell.cntLabel.backgroundColor = .red
-        cell.titleLabel.backgroundColor = .green
-        cell.titleLabel.layer.cornerRadius = 2
-        cell.cntLabel.layer.cornerRadius = 2
+        
+        cell.configure()
+        
+        cell.backgroundColor = .black
         
         return cell
     }

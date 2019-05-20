@@ -16,14 +16,24 @@ class MyCell: UITableViewCell {
 
     @IBOutlet weak var cntLabel: UILabel!
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//    }
-//    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        titleLabel.text = ""
-//        cntLabel.text = "0"
-//    }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = ""
+        cntLabel.text = "0"
+    }
 
+    func configure() {
+        cntLabel.backgroundColor = .green
+        titleLabel.textColor = .yellow
+        cntLabel.clipsToBounds = true
+        cntLabel.layer.borderWidth = 1.5
+        cntLabel.layer.cornerRadius = 8
+
+    }
+    
+    
 }
