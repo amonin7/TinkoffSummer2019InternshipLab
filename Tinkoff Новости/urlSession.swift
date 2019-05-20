@@ -13,6 +13,7 @@ extension ViewController {
     func sess() {
         let urlString = "https://cfg.tinkoff.ru/news/public/api/platform/v1/getArticles"
         var resultTitles = [String]()
+        resultTitles.append("sosat")
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
@@ -48,11 +49,4 @@ extension ViewController {
         }
         task.resume()
     }
-    
 }
-
-
-
-
-
-

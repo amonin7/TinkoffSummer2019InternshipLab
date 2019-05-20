@@ -13,16 +13,13 @@ class ViewController: UIViewController {
     var newss = [String]()
     
     @IBOutlet weak var mainTableView: UITableView!
-    // я пишу пишу пишу! не успеваю! извините!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTV()
         sess()
         self.mainTableView.dataSource = self
-        self.mainTableView.delegate = self
-
-        // Do any additional setup after loading the view.
+        //self.mainTableView.delegate = self
     }
     
     func setupTV() {
@@ -39,7 +36,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
         cell.titleLabel.text = newss[indexPath.row]
-        
+        cell.cntLabel.text = "0"
+        cell.cntLabel.backgroundColor = .red
         return cell
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
 }

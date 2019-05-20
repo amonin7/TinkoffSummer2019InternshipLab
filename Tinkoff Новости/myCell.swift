@@ -14,23 +14,16 @@ class MyCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    @IBOutlet weak var cntLabel: UILabel!
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = ""
-    }
-    
-    
-//    func configure(titl: String) {
-//        title = titl
-//        //titleLabel.text = title!
-//        if let label = titleLabel {
-//            label.text = "sukini deti"
-//        }
-//        print(title)
-//        //titleLabel.text = title
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
 //    }
+//    
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        titleLabel.text = ""
+//        cntLabel.text = "0"
+//    }
+
 }
