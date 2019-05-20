@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var newss = [String]()
     
     @IBOutlet weak var mainTableView: UITableView!
     // я пишу пишу пишу! не успеваю! извините!
@@ -17,33 +18,28 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTV()
-        mainTableView.reloadData()
         sess()
+        self.mainTableView.dataSource = self
+        self.mainTableView.delegate = self
+
         // Do any additional setup after loading the view.
     }
     
     func setupTV() {
-        navigationItem.title = "Tinkoff Chat"
+        navigationItem.title = "Tinkoff Новости"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return newss.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
-    /*func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! Mycell
-        cell.configire(indexPath: indexPath, users : )
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
+        cell.titleLabel.text = newss[indexPath.row]
         
-    }*/
+        return cell
+    }
 }
-
-
-

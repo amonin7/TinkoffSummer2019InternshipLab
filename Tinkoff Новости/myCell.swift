@@ -10,11 +10,27 @@ import Foundation
 import UIKit
 
 class MyCell: UITableViewCell {
-    var title: String?
+    var title: String = ""
     
     @IBOutlet weak var titleLabel: UILabel!
 
-    func configure(titl: String) {
-        titleLabel.text = titl
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = ""
+    }
+    
+    
+//    func configure(titl: String) {
+//        title = titl
+//        //titleLabel.text = title!
+//        if let label = titleLabel {
+//            label.text = "sukini deti"
+//        }
+//        print(title)
+//        //titleLabel.text = title
+//    }
 }
