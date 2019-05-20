@@ -24,7 +24,6 @@ class ViewController: UIViewController {
     
     func setupTV() {
         navigationItem.title = "Tinkoff Новости"
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = .yellow
         mainTableView.backgroundColor = .black
