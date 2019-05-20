@@ -35,9 +35,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
+        
         cell.titleLabel.text = newss[indexPath.row]
         cell.cntLabel.text = "0"
         cell.cntLabel.backgroundColor = .red
+        cell.titleLabel.backgroundColor = .green
+        cell.titleLabel.layer.cornerRadius = 2
+        cell.cntLabel.layer.cornerRadius = 2
+        
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {
