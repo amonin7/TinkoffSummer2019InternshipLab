@@ -58,6 +58,7 @@
                                         <connections>
                                             <outlet property="cntLabel" destination="JPg-hM-TPS" id="ZOq-wG-C1z"/>
                                             <outlet property="titleLabel" destination="Vaw-3j-3Jz" id="97Z-yB-tuF"/>
+                                            <segue destination="Duf-Jr-doH" kind="show" identifier="selectedNews" id="iIk-SW-IuO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -80,6 +81,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imW-EI-Gdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2118.840579710145" y="140.21739130434784"/>
+        </scene>
+        <!--One NewsVC-->
+        <scene sceneID="pPl-ww-Orz">
+            <objects>
+                <viewController id="Duf-Jr-doH" customClass="OneNewsVC" customModule="Tinkoff_Новости" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Drk-OV-NSs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7R-cl-keD">
+                                <rect key="frame" x="16" y="80" width="382" height="640"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="k7R-cl-keD" firstAttribute="leading" secondItem="2b6-EG-Bv1" secondAttribute="leading" constant="16" id="Hyw-E9-DfT"/>
+                            <constraint firstItem="k7R-cl-keD" firstAttribute="top" secondItem="2b6-EG-Bv1" secondAttribute="top" constant="16" id="Y4x-sG-4QC"/>
+                            <constraint firstItem="2b6-EG-Bv1" firstAttribute="bottom" secondItem="k7R-cl-keD" secondAttribute="bottom" constant="16" id="Yda-1Y-o6v"/>
+                            <constraint firstItem="2b6-EG-Bv1" firstAttribute="trailing" secondItem="k7R-cl-keD" secondAttribute="trailing" constant="16" id="tAI-0h-IQa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2b6-EG-Bv1"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RPD-dn-6xz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2977" y="141"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cOP-jg-VYI">

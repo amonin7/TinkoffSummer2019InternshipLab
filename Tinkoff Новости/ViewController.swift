@@ -47,7 +47,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "selectedNews", sender: "any")
     }
 }
+
