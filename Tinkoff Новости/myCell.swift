@@ -32,8 +32,7 @@ class MyCell: UITableViewCell {
         cntLabel.clipsToBounds = true
         cntLabel.layer.borderWidth = 1.5
         cntLabel.layer.cornerRadius = 8
-
     }
-    
-    
 }
+
+

@@ -10,13 +10,20 @@ import UIKit
 
 class OneNewsVC: UIViewController {
 
+    var newsSlug: String = ""
+    var newsText = ""
+    
+    @IBOutlet weak var mainTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getAloneNewsInfo(slug: newsSlug)
+        
         navigationItem.title = "Tinkoff Новость"
         navigationController?.navigationBar.prefersLargeTitles = false
-
         
+        mainTextView.text = newsText
     }
 
 }

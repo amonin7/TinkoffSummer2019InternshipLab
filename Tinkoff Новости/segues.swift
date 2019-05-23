@@ -13,6 +13,8 @@ extension ViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectedNews" {
             let destVC = segue.destination as! OneNewsVC
+            destVC.newsSlug = sender as! String
+            //print(sender)
         }
     }
 }

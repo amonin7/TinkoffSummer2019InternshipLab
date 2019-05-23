@@ -10,16 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var newss = [String]()
+    var newss = [News]()
     
     @IBOutlet weak var mainTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTV()
-        sess()
+        getNews()
         self.mainTableView.dataSource = self
-        //self.mainTableView.delegate = self
+        self.mainTableView.delegate = self
     }
     
     func setupTV() {
@@ -38,18 +38,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
         
-        cell.titleLabel.text = newss[indexPath.row]
+        cell.titleLabel.text = newss[indexPath.row].title
         cell.cntLabel.text = "0"
         
         cell.configure()
-        
         cell.backgroundColor = .black
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "selectedNews", sender: "any")
+        //tableView.reloadData()
+        performSegue(withIdentifier: "selectedNews", sender: newss[indexPath.row].slug)
     }
 }
 
