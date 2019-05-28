@@ -38,7 +38,7 @@ extension ViewController {
                             return
                     }
                     for new in news {
-                        var currentNew: News = News(id: "", title: "", slug: "")
+                        var currentNew = News(id: "", title: "", slug: "")
                         currentNew.title = new["title"] as! String
                         currentNew.id = new["id"] as! String
                         currentNew.slug = new["slug"] as! String

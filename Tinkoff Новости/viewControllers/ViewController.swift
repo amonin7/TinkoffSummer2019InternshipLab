@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
     var newss = [News]()
+    
+    var newsFromDB = [DataEntity]()
+    
+    var cds = CoreDataStack()
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var mainTableView: UITableView!
     
@@ -38,6 +45,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
         
+        
+        
         cell.titleLabel.text = newss[indexPath.row].title
         cell.cntLabel.text = "0"
         
@@ -48,7 +57,21 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //tableView.reloadData()
+        var cnt = findIDinDB(news: newsFromDB, id: newss[indexPath.row].id)
+        cnt += 1
+        let currentNews = DataEntity(context: context)
+        currentNews.clicksAmount = Int32(cnt)
+        
+        cds.performSave(with: context)
+        let model = cds.managedObjectModel
+        let fetchRequest = DataEntity.fetchRequestDataEntity(model: model)
+        do {
+            newsFromDB = try cds.mainContext.fetch(fetchRequest!)
+        } catch {
+            print("Error -> \(error)")
+        }
+        mainTableView.reloadData()
+        
         performSegue(withIdentifier: "selectedNews", sender: newss[indexPath.row].slug)
     }
 }

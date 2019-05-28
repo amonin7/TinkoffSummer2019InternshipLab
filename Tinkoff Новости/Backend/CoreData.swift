@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 typealias SaveComplition = (Error?) -> ()
+
 class CoreDataStack {
     var storeURL: URL {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -40,36 +41,16 @@ class CoreDataStack {
         return coordinator
     }()
     
-//    lazy var masterContext: NSManagedObjectContext = {
-//        var masterContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-//
-//        masterContext.persistentStoreCoordinator = self.persistentStoreCoordinator
-//        masterContext.mergePolicy = NSOverwriteMergePolicy
-//
-//        return masterContext
-//    }()
-    
     lazy var mainContext: NSManagedObjectContext = {
         var mainContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        
-        //mainContext.parent = self.masterContext
+        mainContext.persistentStoreCoordinator = self.persistentStoreCoordinator
         mainContext.mergePolicy = NSOverwriteMergePolicy
         
         return mainContext
     }()
     
-//    lazy var saveContext: NSManagedObjectContext = {
-//        var saveContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-//
-//        saveContext.parent = self.mainContext
-//        saveContext.mergePolicy = NSOverwriteMergePolicy
-//
-//        return saveContext
-//    }()
-    
-    func performSave(with context: NSManagedObjectContext, completion: @escaping ((Error?)->())) {
+    func performSave(with context: NSManagedObjectContext) {
         guard context.hasChanges else {
-            completion(nil)
             return
         }
         
@@ -79,12 +60,6 @@ class CoreDataStack {
             } catch {
                 print("Context save error \(error)")
             }
-            
-//            if let parentContext = context.parent {
-//                self.performSave(with: parentContext, completion: completion)
-//            } else {
-//                completion(nil)
-//            }
         }
     }
 }
@@ -94,13 +69,11 @@ extension DataEntity {
     static func insertData(in context: NSManagedObjectContext) -> DataEntity? {
         guard let data = NSEntityDescription.insertNewObject(forEntityName: "DataEntity", into: context) as? DataEntity else { return nil }
         
-        data.clicksAmount = 0
-        data.newsId = ""
+        data.clicksAmount = 21
+        data.newsId = "ewklfds.n"
         
         return data
     }
-    
-    
     
     static func findOrInsertAppUser(in context : NSManagedObjectContext) -> DataEntity? {
         guard let model = context.persistentStoreCoordinator?.managedObjectModel else {
@@ -108,12 +81,10 @@ extension DataEntity {
             assert(false)
             return nil
         }
-        
         var data: DataEntity?
-        guard let fetchRequest = DataEntity.fetchRequestAppUser(model: model) else {
+        guard let fetchRequest = DataEntity.fetchRequestDataEntity(model: model) else {
             return nil
         }
-        
         do {
             let results = try context.fetch(fetchRequest)
             assert(results.count < 2, "Multiple DataEntities Found!")
@@ -132,19 +103,23 @@ extension DataEntity {
     }
     
     
-    static func fetchRequestAppUser(model: NSManagedObjectModel) -> NSFetchRequest<DataEntity>? {
+    static func fetchRequestDataEntity(model: NSManagedObjectModel) -> NSFetchRequest<DataEntity>? {
         let templateName = "DataEntity"
         
         guard let fetchRequest = model.fetchRequestTemplate(forName: templateName) as? NSFetchRequest<DataEntity> else {
             assert(false, "No template with name \(templateName)")
             return nil
         }
-        
         return fetchRequest
     }
 }
 
-//extension User {
-//    func insertUser(in: NSManagedObjectContext) {}
-//}
-
+func findIDinDB(news: [DataEntity], id: String) -> Int {
+    var cnt = 0
+    for new in news {
+        if new.newsId == id {
+            cnt = Int(new.clicksAmount)
+        }
+    }
+    return cnt
+}

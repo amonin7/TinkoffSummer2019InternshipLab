@@ -3,8 +3,11 @@
     <entity name="DataEntity" representedClassName="DataEntity" syncable="YES" codeGenerationType="class">
         <attribute name="clicksAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="newsId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsSLug" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsTitle" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <fetchRequest name="DataEntity" entity="DataEntity"/>
     <elements>
-        <element name="DataEntity" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="DataEntity" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>
