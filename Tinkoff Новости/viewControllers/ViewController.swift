@@ -45,10 +45,19 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
         
+        let datadata = DataEntity.insertData(in: cds.mainContext, newsid: newss[indexPath.row].id, newsTitle: newss[indexPath.row].title)
+        do {
+            try cds.mainContext.save()
+        } catch {
+            print(error)
+        }
+        //print(datadata ?? "lost")
+
         
+        //let cnt = findIDinDB(news: newsFromDB, id: newss[indexPath.row].id)
         
         cell.titleLabel.text = newss[indexPath.row].title
-        cell.cntLabel.text = "0"
+        cell.cntLabel.text = String(findIDinDB(id: newss[indexPath.row].id).clicksAmount)
         
         cell.configure()
         cell.backgroundColor = .black
@@ -57,10 +66,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var cnt = findIDinDB(news: newsFromDB, id: newss[indexPath.row].id)
-        cnt += 1
+        var cnt = findIDinDB(id: newss[indexPath.row].id)
+        cnt.clicksAmount += 1
+        print(cnt)
         let currentNews = DataEntity(context: context)
-        currentNews.clicksAmount = Int32(cnt)
+        currentNews.clicksAmount = Int32(cnt.clicksAmount)
         
         cds.performSave(with: context)
         let model = cds.managedObjectModel

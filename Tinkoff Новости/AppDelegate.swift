@@ -11,29 +11,10 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var cdss = CoreDataStack()
     
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        var appusr = DataEntity.insertData(in: cdss.mainContext)
-//        do {
-//            try cdss.mainContext.save()
-//        } catch {
-//            print(error)
-//        }
-//        let model = cdss.managedObjectModel
-//        let fetchRequest = DataEntity.fetchRequestDataEntity(model: model)
-//        let result = try! cdss.mainContext.fetch(fetchRequest!)
-        print("\n\n\n")
-//        print(appusr ?? "lost")
-        //print(result.first!.newsTitle ?? "noname")
-        print("\n\n\n")
-        let appusr = DataEntity.findOrInsertAppUser(in: cdss.mainContext)
-        print(appusr?.clicksAmount ?? "lost")
-        print("\n\n\n")
-
         return true
     }
 

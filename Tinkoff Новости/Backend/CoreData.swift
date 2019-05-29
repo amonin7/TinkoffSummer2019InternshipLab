@@ -66,11 +66,12 @@ class CoreDataStack {
 
 
 extension DataEntity {
-    static func insertData(in context: NSManagedObjectContext) -> DataEntity? {
+    static func insertData(in context: NSManagedObjectContext, newsid: String, newsTitle: String) -> DataEntity? {
         guard let data = NSEntityDescription.insertNewObject(forEntityName: "DataEntity", into: context) as? DataEntity else { return nil }
         
-        data.clicksAmount = 21
-        data.newsId = "ewklfds.n"
+        data.clicksAmount = 0
+        data.newsId = newsid
+        data.newsTitle = newsTitle
         
         return data
     }
@@ -96,12 +97,11 @@ extension DataEntity {
         }
         
         if data == nil {
-            data = DataEntity.insertData(in: context)
+            data = DataEntity.insertData(in: context, newsid: "", newsTitle: "")
         }
         
         return data
     }
-    
     
     static func fetchRequestDataEntity(model: NSManagedObjectModel) -> NSFetchRequest<DataEntity>? {
         let templateName = "DataEntity"
@@ -113,13 +113,16 @@ extension DataEntity {
         return fetchRequest
     }
 }
-
-func findIDinDB(news: [DataEntity], id: String) -> Int {
-    var cnt = 0
-    for new in news {
-        if new.newsId == id {
-            cnt = Int(new.clicksAmount)
+extension ViewController {
+    func findIDinDB(id: String) -> DataEntity {
+        let model = cds.managedObjectModel
+        let fetchRequest = DataEntity.fetchRequestDataEntity(model: model)
+        let result = try! cds.mainContext.fetch(fetchRequest!)
+        for entity in result {
+            if entity.newsId == id {
+                return entity
+            }
         }
+        return DataEntity.insertData(in: cds.mainContext, newsid: id, newsTitle: "")!
     }
-    return cnt
 }
